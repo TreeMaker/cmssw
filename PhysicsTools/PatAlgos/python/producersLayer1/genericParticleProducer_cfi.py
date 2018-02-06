@@ -10,19 +10,19 @@ patGenericParticles = cms.EDProducer("PATGenericParticleProducer",
     userData = cms.PSet(
       # add custom classes here
       userClasses = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add doubles here
       userFloats = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add ints here
       userInts = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add candidate ptrs here
       userCands = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add "inline" functions here
       userFunctions = cms.vstring(),

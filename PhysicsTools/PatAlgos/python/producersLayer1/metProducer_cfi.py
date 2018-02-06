@@ -10,19 +10,19 @@ patMETs = cms.EDProducer("PATMETProducer",
     userData = cms.PSet(
       # add custom classes here
       userClasses = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add doubles here
       userFloats = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add ints here
       userInts = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add candidate ptrs here
       userCands = cms.PSet(
-        src = cms.VInputTag('')
+        src = cms.VInputTag()
       ),
       # add "inline" functions here
       userFunctions = cms.vstring(),
@@ -49,7 +49,7 @@ patMETs = cms.EDProducer("PATMETProducer",
     computeMETSignificance  = cms.bool(False),
     # significance computation parameters, not used
     # if the significance is not computed
-    srcJets = cms.InputTag("selectedPatJets"),
+    srcJets = cms.InputTag("cleanedPatJets"),
     srcPFCands =  cms.InputTag("particleFlow"),
     srcLeptons = cms.VInputTag("selectedPatElectrons", "selectedPatMuons", "selectedPatPhotons"),
     srcJetSF = cms.string('AK4PFchs'),

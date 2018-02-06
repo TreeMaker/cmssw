@@ -71,7 +71,7 @@ JetCorrFactorsProducer::JetCorrFactorsProducer(const edm::ParameterSet& cfg):
   if(useNPV_){
     if(cfg.existsAs<edm::InputTag>("primaryVertices")){
       primaryVertices_=cfg.getParameter<edm::InputTag>("primaryVertices");
-      primaryVerticesToken_=mayConsume<std::vector<reco::Vertex> >(primaryVertices_);
+      if(!primaryVertices_.label().empty()) primaryVerticesToken_=consumes<std::vector<reco::Vertex> >(primaryVertices_);
     }
     else{
       throw cms::Exception("No primaryVertices specified")
@@ -87,8 +87,8 @@ JetCorrFactorsProducer::JetCorrFactorsProducer(const edm::ParameterSet& cfg):
   if(useRho_){
     if((!extraJPTOffset_.empty() && extraJPTOffset_.front()==std::string("L1FastJet")) || std::find(levels.begin(), levels.end(), "L1FastJet")!=levels.end()){
       if(cfg.existsAs<edm::InputTag>("rho")){
-	rho_=cfg.getParameter<edm::InputTag>("rho");
-	rhoToken_=mayConsume<double>(rho_);
+        rho_=cfg.getParameter<edm::InputTag>("rho");
+        if(!rho_.label().empty()) rhoToken_=consumes<double>(rho_);
       }
       else{
 	throw cms::Exception("No parameter rho specified")

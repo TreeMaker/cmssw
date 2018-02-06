@@ -22,7 +22,7 @@ PATMETProducer::PATMETProducer(const edm::ParameterSet & iConfig):
   metSrc_         = iConfig.getParameter<edm::InputTag>("metSource");
   metToken_       = consumes<edm::View<reco::MET> >(metSrc_);
   addGenMET_      = iConfig.getParameter<bool>         ("addGenMET");
-  genMETToken_    = mayConsume<edm::View<reco::GenMET> >(iConfig.getParameter<edm::InputTag>("genMETSource"));
+  if (addGenMET_) genMETToken_    = consumes<edm::View<reco::GenMET> >(iConfig.getParameter<edm::InputTag>("genMETSource"));
   addResolutions_ = iConfig.getParameter<bool>         ("addResolutions");
 
   // Efficiency configurables
@@ -188,7 +188,7 @@ PATMETProducer::getMETCovMatrix(const edm::Event& event, const edm::EventSetup& 
   JME::JetResolutionScaleFactor resSFObj = JME::JetResolutionScaleFactor::get(iSetup, jetSFType_);
 
   //Compute the covariance matrix and fill it
-  reco::METCovMatrix cov = metSigAlgo_->getCovariance( *inputJets, leptons, *inputCands,
+  reco::METCovMatrix cov = metSigAlgo_->getCovariance( *inputJets, leptons, inputCands,
 						       *rho, resPtObj, resPhiObj, resSFObj, event.isRealData());
 
   return cov;

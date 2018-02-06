@@ -852,6 +852,7 @@ class AddJetCollection(ConfigToolBase):
         else:
             _newPatJets.addBTagInfo = False
             _newPatJets.addTagInfos = False
+            _newPatJets.discriminatorSources = cms.VInputTag()
             ## adjust output module; these collections will be empty anyhow, but we do it to stay clean
             for outputModule in outputModules:
                     if hasattr(process,outputModule):
